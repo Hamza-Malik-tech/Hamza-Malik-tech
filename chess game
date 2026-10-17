@@ -1,0 +1,97 @@
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char kingFile, pieceFile, color, type;
+    int kingRank, pieceRank;
+    int dx, dy;
+    bool check = false;
+
+    cout << "Enter King position : ";
+    cin >> kingFile >> kingRank;
+
+    cout << "Enter Piece position : ";
+    cin >> pieceFile >> pieceRank;
+
+    cout << "Enter Piece color (B/W): ";
+    cin >> color;
+
+    cout << "Enter Piece type (Q/R/B/N/P): ";
+    cin >> type;
+
+    if (kingFile < 'A' || kingFile > 'H' ||
+        pieceFile < 'A' || pieceFile > 'H' ||
+        kingRank < 1 || kingRank > 8 ||
+        pieceRank < 1 || pieceRank > 8 ||
+        (color != 'B' && color != 'W') ||
+        (type != 'Q' && type != 'R' && type != 'B' &&
+            type != 'N' && type != 'P'))
+    {
+        cout << "Invalid positions or piece!";
+    }
+    else if (kingFile == pieceFile && kingRank == pieceRank)
+    {
+        cout << "Invalid positions! Both pieces occupy the same square.";
+    }
+    else
+    {
+        dx = kingFile - pieceFile;
+        dy = kingRank - pieceRank;
+
+        if (type == 'R')
+        {
+            if (dx == 0 || dy == 0)
+                check = true;
+        }
+        else if (type == 'B')
+        {
+            if (dx == dy || dx == -dy)
+                check = true;
+        }
+        else if (type == 'Q')
+        {
+            if (dx == 0 || dy == 0 || dx == dy || dx == -dy)
+                check = true;
+        }
+        else if (type == 'N')
+        {
+            if ((dx == 2 || dx == -2) &&
+                (dy == 1 || dy == -1))
+                check = true;
+            else if ((dy == 2 || dy == -2) &&
+                (dx == 1 || dx == -1))
+                check = true;
+        }
+        else if (type == 'P')
+        {
+            if (dx == 1 || dx == -1)
+            {
+                if (color == 'W' && dy == 1)
+                    check = true;
+                else if (color == 'B' && dy == -1)
+                    check = true;
+            }
+        }
+
+        cout << "The Positions are Valid!" << endl;
+
+        if (color == 'B')
+        {
+            if (check)
+                cout << "The Black piece is giving a check to the White King";
+            else
+                cout << "The Black piece is not giving check to the White King";
+        }
+        else
+        {
+            if (check)
+                cout << "The White piece is giving a check to the Black King";
+            else
+                cout << "The White piece is not giving check to the Black King";
+        }
+    }
+
+    system("pause");
+}
