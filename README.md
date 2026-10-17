@@ -1,4 +1,4 @@
-## Hi there 👋
+## I am Hamza Malik student  at fast as BS(SE)
 
 <!--
 **Hamza-Malik-tech/Hamza-Malik-tech** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
